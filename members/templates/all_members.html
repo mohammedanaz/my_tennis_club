@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} All Members {% endblock %}
+
+{% block content %}
+    
+    <h1>All Members</h1>
+    <h2>Date & Time : {{current_date}}</h2>
+
+    {% if is_even_minute %}
+    <h2>Displayed on Even minute {{even_minute}} mins</h2>
+
+    {% else %}
+    <h2>Displayed on Odd minute {{even_minute}} mins</h2>
+
+    {% endif %}
+
+    <ul>
+        {% for x in members_key %}
+        <li><a href="details/{{x.id}}"  style="color: {% cycle 'red' 'green' %}; 
+            {% if forloop.first or forloop.last %} background-color: aqua; {% endif %}">
+            {{x.first_name}} - {{x.last_name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+        </tr>
+        {%  for x in members_key %}
+        <tr>
+            <td>{{x.id}}</td>
+            <td>{{x.first_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
